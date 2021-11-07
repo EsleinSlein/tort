@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="prod_con prod_det">
+
+
+            <img class="product_image prod_img_det minimized" src="{{product.image.url}}">
+            <div class="det_con">
+            <div class="product_name">"{{product.name}}"</div>
+            <div class="product_weight">Вес: {{product.weight}}</div>
+            <div class="price">Цена: {{product.price}}</div>
+            <div class="product_desc">Описание: {{product.description }}</div>
+            </div>
+            <div class="img_cont">
+        {% for img in product.productdetail_set.all %}
+            <img class="det_img minimized" src="{{img.image_detail.url}} ">
+         {% endfor %}
+            </div>
+
+        </div>
+
+</div>
+
+
+
+{% endblock %}

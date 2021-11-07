@@ -1,0 +1,11 @@
+<div class="filter1" >
+    <h1>Продукция</h1>
+        <p><a class="filter" href="{%  url 'home' %}">Вся продукция</a></p>
+    {% for cat in category %}
+        <p><a class="filter" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></p>
+
+    {% endfor %}
+
+</div>
+
+

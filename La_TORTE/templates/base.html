@@ -1,0 +1,92 @@
+
+{% load tort_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;600&family=Open+Sans&family=Oswald&family=Raleway&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>La torte</title>
+</head>
+
+<body>
+   
+    <header>  
+        <div class="nav">
+            <a class="home" href="{%  url 'home' %}"> Главная страница </a>
+        </div>
+
+        <div class="back"> 
+        </div>
+
+        <h1 class="name">La torte!</h1>
+        <h3 class="descript"><span class="description">La torte!</span> - выпечка под заказ. Свяжитесь с нами для заказа любым удобным вам методом. Методы связи предоставлены ниже. </h3>    
+
+    </header>
+    {% get_category  %}
+
+    <div class="container">
+    {% block content %}
+        {% endblock %}
+    </div>
+    {% if page_obj.has_other_pages %}
+    <nav class="list-pages">
+        <ul>
+            {% if page_obj.has_previous %}
+            <li class="page-num">
+                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+            </li>
+            {% endif %}
+
+            {% for p in paginator.page_range %}
+            {% if page_obj.number == p %}
+            <li class="page-num page-num-selected">{{ p }}</li>
+            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <li class="page-num">
+                <a href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-num">
+                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+{% endif %}
+
+<footer class="footer" id="contacts">
+    <div class="container cont-cont">
+        <div class="contacts">
+            <div>Контакты для связи с нами:</div>
+            <div class="contacts_link">Телефон: </div>
+
+                <div class="contacts_link"> Инстаграмм канал<a href="#" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>:
+                    <a href="#"></a>
+                </div>
+                <div class="contacts_link">Вконтакте<a href="#" target="_blank">
+                        <i class="fab fa-vk"></i>
+                    </a>:
+                    <a href="#"></a>
+                </div>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+                © 2021 Amagomedov
+    </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/static/assets/js/app.js"> </script>
+</body>
+</html>
